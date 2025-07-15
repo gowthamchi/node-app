@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "gowtham1198/node-app"
         GITOPS_REPO = "https://github.com/gowthamchi/node-gitops.git"
-        GIT_CREDENTIALS_ID = "gitops-creds"
+        GIT_CREDENTIALS_ID = "gitops-repo"
         DOCKER_CREDENTIALS_ID = "dockerhub-creds"
         TAG = "v${BUILD_NUMBER}"
     }
