@@ -27,8 +27,8 @@ pipeline {
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
                     sh '''
-                      echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                      docker push $IMAGE_NAME:$TAG
+                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        docker push $IMAGE_NAME:$TAG
                     '''
                 }
             }
@@ -37,7 +37,7 @@ pipeline {
         stage('Update Image in GitOps Repo') {
             steps {
                 dir('gitops') {
-                    git credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GITOPS_REPO}"
+                    git branch: 'main', credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GITOPS_REPO}"
 
                     script {
                         def deploymentFile = "k8s/deployment.yaml"
